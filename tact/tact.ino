@@ -45,6 +45,7 @@ void loop() {
 
 boolean chtsw(byte dx) {
   boolean tsw = digitalRead(dx);
+  
   delay(20);
   if (tsw == digitalRead(dx)) {
     return !tsw;
