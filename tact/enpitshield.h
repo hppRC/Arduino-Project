@@ -13,3 +13,5 @@
 
 #define LED_ON  HIGH
 #define LED_OFF LOW
+
+int LED_list[4] = {LED0, LED1, LED2, LED3};
