@@ -22,11 +22,11 @@ int push_continue_flag = false;
 void loop() {
   //スイッチを押し続けても点灯LEDが遷移しないように条件分岐させる
   //一度押下していない状態を挟むと、再度入力ができるようになる
-  if ((digitalRead(TACTSW0) == TACTSW_ON) && (!push_continue_flag)) {
+  if ((chtsw(TACTSW0) == TACTSW_ON) && (!push_continue_flag)) {
     i++;
     i %= RECOG_RATE*4;
     push_continue_flag = true;
-  } else if ((digitalRead(TACTSW0) == TACTSW_OFF) || (!push_continue_flag)) {
+  } else if ((chtsw(TACTSW0) == TACTSW_OFF) || (!push_continue_flag)) {
     push_continue_flag = false;
   } 
 
@@ -40,4 +40,14 @@ void loop() {
   }
   digitalWrite(LED_list[led], LED_ON);
   return;
+}
+
+
+boolean chtsw(byte dx) {
+  boolean tsw = digitalRead(dx);
+  delay(20);
+  if (tsw == digitalRead(dx)) {
+    return !tsw;
+  }
+  return tsw;
 }
