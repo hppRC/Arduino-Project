@@ -14,4 +14,7 @@ void Led0_Tick05() {
   } else {
     bCurLed0 = LED_OFF; 
   }
+
+  digitalWrite(LED0, bCurLed0);
+  return ;
 }
