@@ -19,6 +19,13 @@ void Led3_Tick025() {
   return ;
 }
 
+
+void Led3_Tick025Ending() {
+  Led3_write();
+  return ;
+}
+
+
 void Led3_write() {
   if (bCurLed3 == LED_OFF) {
       bCurLed3 = LED_ON;

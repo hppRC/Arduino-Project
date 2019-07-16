@@ -12,8 +12,8 @@ boolean timerControle() {
   if (IsSW0()) {
     if (timerRunning) {
       MsTimer2::stop();
+      reset_timer();
       timerRunning = false;
-      All_LED_OFF();
     } else {
       MsTimer2::start();
       timerRunning = true;
@@ -22,8 +22,12 @@ boolean timerControle() {
   return timerRunning;
 }
 
-void All_LED_OFF() {
-  digitalWrite(LED0, LED_OFF);
-  digitalWrite(LED1, LED_OFF);
-  digitalWrite(LED3, LED_OFF);
+void timerDriver() {
+  Led0_Tick05();
+  Led3_Tick025();
+  if (timeKeeperTimePast(kitchenbMode)) {
+    timeHasPast_Init();
+    ending = ENDINGSTARTED;
+  }
+  return ;
 }

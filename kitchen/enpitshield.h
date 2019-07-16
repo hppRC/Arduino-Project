@@ -20,3 +20,17 @@
 
 #define Mode30SEC false
 #define Mode60SEC true
+
+#define STOPED false
+#define RUNNING true
+
+#define TIMERCYCLE 250
+#define _30SEC (30 * (1000 / TIMERCYCLE))
+#define _60SEC (60 * (1000 / TIMERCYCLE))
+
+
+#define ENDINGDIDNTSTART false;
+#define ENDINGSTARTED true;
+
+#define ENDINGCYCLE 250
+#define _15SECEND (15 * (1000 / ENDINGCYCLE))
