@@ -14,3 +14,9 @@
 
 #define TactSW0 A0
 #define TactSW1 A1
+
+#define SW_PUSHED 1
+#define SW_OFF    0
+
+#define Mode30SEC false
+#define Mode60SEC true

@@ -1,8 +1,5 @@
 #include "enpitshield.h"
 
-#define SW_PUSHED 1
-#define SW_OFF    0
-
 static boolean bSw0Before;
 static boolean bSw1Before;
 
