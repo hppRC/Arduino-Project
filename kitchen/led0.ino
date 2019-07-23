@@ -1,29 +1,25 @@
 #include "enpitshield.h"
 
-static boolean bCurLed0;
-static int Led0_blinkCounter;
+static boolean Led0Before;
+static int Led0BlinkCounter;
 
-
-void Led0_Init() {
-  bCurLed0 = LED_OFF;
-  Led0_blinkCounter = 0;
+void Led0Init() {
+  Led0Before = LED_OFF;
+  Led0BlinkCounter = 0;
   digitalWrite(LED0, LED_OFF);
-  return;
-}
-
-void Led0_Tick05() {
-  if (Led0_blinkCounter++ < 1) {
-    Led0_write();
-  }
-  Led0_blinkCounter %= 2;
   return ;
 }
 
-void Led0_write() {
-    if (bCurLed0 == LED_OFF) {
-      bCurLed0 = LED_ON;
-    } else {
-      bCurLed0 = LED_OFF; 
-    }
-  digitalWrite(LED0, bCurLed0);
+void Led0Tick05() {
+  if (++Led0BlinkCounter == 20) {
+    Led0Write();
+  }
+  Led0BlinkCounter %= 20;
+  return ;
+}
+
+void Led0Write() {
+  Led0Before ^= 1;
+  digitalWrite(LED0, Led0Before);
+  return ;
 }

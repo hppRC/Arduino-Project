@@ -1,37 +1,17 @@
 #include "enpitshield.h"
 
-static boolean bCurLed1;
-static boolean bMode;
+static boolean Led1Before;
+static boolean Led1Mode;
 
-void Led1_Init() {
-  bCurLed1 = LED_OFF;
-  bMode = false;
+void Led1Init() {
+  Led1Before = LED_OFF;
+  Led1Mode = false;
   digitalWrite(LED1, LED_OFF);
   return ;
 }
 
-boolean Led1_checkset(boolean kitchenTimerRunning) {
-  if (kitchenTimerRunning) {
-    return bMode;
-  }
-  if (IsSW1()) {
-    if (bMode == Mode30SEC) {
-      Led1_set60SEC();
-    } else {
-      Led1_set30SEC();
-    }
-  }
-  return bMode;
-}
-
-void Led1_set30SEC() {
-  bMode = Mode30SEC;
-  digitalWrite(LED1, LED_OFF);
-  return ;
-}
-
-void Led1_set60SEC() {
-  bMode = Mode60SEC;
-  digitalWrite(LED1, LED_ON);
+void Led1Write() {
+  Led1Before = ~Led1Before;
+  digitalWrite(LED1, Led1Before);
   return ;
 }

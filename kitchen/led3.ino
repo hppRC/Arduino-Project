@@ -1,36 +1,38 @@
 #include "enpitshield.h"
 
-static boolean bCurLed3;
-static int Led3_blinkCounter;
+static boolean Led3Before;
+static int Led3BlinkCounter;
 
-
-void Led3_Init() {
-  bCurLed3 = LED_OFF;
-  Led3_blinkCounter = 0;
+void Led3Init() {
+  Led3Before = LED_OFF;
+  Led3BlinkCounter = 0;
   digitalWrite(LED3, LED_OFF);
-  return;
-}
-
-void Led3_Tick025() {
-  if (Led3_blinkCounter++ < 4) {
-    Led3_write();
-  }
-  Led3_blinkCounter %= 20;
   return ;
 }
 
-
-void Led3_Tick025Ending() {
-  Led3_write();
+void Led3Tick025() {
+  Led3BlinkCounter++;
+  if (Led3BlinkCheck()) {
+    Led3Write();
+  }
+  Led3BlinkCounter %= 200;
   return ;
 }
 
+void Led3Write() {
+  Led3Before ^= 1;
+  digitalWrite(LED3, Led3Before);
+  return ;
+}
 
-void Led3_write() {
-  if (bCurLed3 == LED_OFF) {
-      bCurLed3 = LED_ON;
-  } else {
-      bCurLed3 = LED_OFF; 
+boolean Led3BlinkCheck() {
+  switch (Led3BlinkCounter) {
+    case 0: ;
+    case 10: ;
+    case 20: ;
+    case 30: ;
+    case 40:
+      return true;
   }
-  digitalWrite(LED3, bCurLed3);
+  return false;
 }

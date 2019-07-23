@@ -25,6 +25,7 @@ boolean timerControle() {
 void timerDriver() {
   Led0_Tick05();
   Led3_Tick025();
+  Serial.print(0, DEC); 
   if (timeKeeperTimePast(kitchenbMode)) {
     timeHasPast_Init();
     ending = ENDINGSTARTED;

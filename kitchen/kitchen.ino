@@ -1,52 +1,35 @@
 #include "enpitshield.h"
 #include <MsTimer2.h>
 
-static boolean kitchenbMode;
-static boolean kitchenTimerRunning;
+static boolean timerRunning;
+static boolean mode;
 static boolean ending;
 
 void setup() {
-  // put your setup code here, to run once:
+  pinModeInit();
+  Led0Init();
+  Led1Init();
+  Led3Init();
+  timerControllerInit();
+  timeKeeperInit();
+  Serial.begin(9600);
+
+  timerRunning = STOPED;
+  mode = Mode30SEC;
+  return ;
+}
+
+void loop() {
+  Sw0Observer();
+  Sw1Observer();
+  return ;
+}
+
+void pinModeInit() {
   pinMode(LED0, OUTPUT);
   pinMode(LED1, OUTPUT);
   pinMode(LED3, OUTPUT);
   pinMode(TactSW0, INPUT);
   pinMode(TactSW1, INPUT);
-  Inits();
-
-  ending = ENDINGDIDNTSTART;
-}
-
-void loop() {
-  if (!ending) {
-    kitchenTimerRunning = timerControle();
-    kitchenbMode = Led1_checkset(kitchenTimerRunning);
-  } else {
-    FinishEnding_If_SW0Pushed();
-  }
-  return ;
-}
-
-void reset_timer() {
-  kitchenbMode = Mode30SEC;
-  kitchenTimerRunning = STOPED;
-  ending = ENDINGDIDNTSTART;
-  Inits();
-}
-
-
-void All_LED_OFF() {
-  digitalWrite(LED0, LED_OFF);
-  digitalWrite(LED1, LED_OFF);
-  digitalWrite(LED3, LED_OFF);
-}
-
-void Inits() {
-  Led0_Init();
-  Led1_Init();
-  Led3_Init();
-  TactSW_Init();
-  timerControler_Init();
-
   return ;
 }

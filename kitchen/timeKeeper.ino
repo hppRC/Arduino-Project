@@ -1,38 +1,28 @@
 #include "enpitshield.h"
 
 static int pastTime;
+static int confTime;
 
-void timeKeeper_Init() {
+void timeKeeperInit() {
   pastTime = 0;
+  confTime = getConfTime();
+  return ;
 }
 
-
-boolean timeKeeperTimePast(boolean kitchenbMode) {
-  if (kitchenbMode == Mode30SEC) {
-    return check30TimePast();
-  } else if (kitchenbMode == Mode60SEC){
-    return check60TimePast();
+void timeKeeper() {
+  if (timerRunning) { 
+    pastTime++;
   }
-}
-
-
-boolean check30TimePast() {
-  pastTime++;
-  if (pastTime > _30SEC) {
-    timeKeeper_Init();
-    return true;
-  } else {
-    return false;
+  if (pastTime > confTime) {
+    stopTimer();
   }
+  return ;
 }
 
-
-boolean check60TimePast() {
-  pastTime++;
-  if (pastTime > _60SEC) {
-    timeKeeper_Init();
-    return true;
-  } else {
-    return false;
+int getConfTime() {
+  if (mode == Mode30SEC) {
+    return _30SEC ;
+  } else if (mode == Mode60SEC) {
+    return _60SEC;
   }
 }
