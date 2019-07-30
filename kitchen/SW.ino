@@ -33,7 +33,7 @@ void Sw0Observer() {
   if (isSw0()) {
     if (timerRunning == RUNNING) {
       stopEnding();
-      stopTimer();  
+      stopTimer();
     } else {
       startTimer();
     }
