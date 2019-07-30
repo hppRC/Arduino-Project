@@ -19,6 +19,15 @@ void Led3Tick025() {
   return ;
 }
 
+void Led3Ending025() {
+  Led3BlinkCounter++;
+  if (Led3BlinkCounter == 10) {
+    Led3Write();
+  }
+  Led3BlinkCounter %= 10;
+  return ;
+}
+
 void Led3Write() {
   Led3Before ^= 1;
   digitalWrite(LED3, Led3Before);
@@ -27,7 +36,7 @@ void Led3Write() {
 
 boolean Led3BlinkCheck() {
   switch (Led3BlinkCounter) {
-    case 0: ;
+    case  0: ;
     case 10: ;
     case 20: ;
     case 30: ;

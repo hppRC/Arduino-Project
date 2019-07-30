@@ -12,9 +12,13 @@ void timeKeeperInit() {
 void timeKeeper() {
   if (timerRunning) { 
     pastTime++;
+    Serial.println(pastTime, DEC);
   }
   if (pastTime > confTime) {
     stopTimer();
+    timeKeeperInit();
+    endingControllerInit();
+    startEnding();
   }
   return ;
 }

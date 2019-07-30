@@ -13,7 +13,6 @@ void setup() {
   timerControllerInit();
   timeKeeperInit();
   Serial.begin(9600);
-
   timerRunning = STOPED;
   mode = Mode30SEC;
   return ;
@@ -22,14 +21,5 @@ void setup() {
 void loop() {
   Sw0Observer();
   Sw1Observer();
-  return ;
-}
-
-void pinModeInit() {
-  pinMode(LED0, OUTPUT);
-  pinMode(LED1, OUTPUT);
-  pinMode(LED3, OUTPUT);
-  pinMode(TactSW0, INPUT);
-  pinMode(TactSW1, INPUT);
   return ;
 }

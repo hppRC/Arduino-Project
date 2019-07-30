@@ -30,17 +30,22 @@ boolean isSw1() {
 }
 
 void Sw0Observer() {
-  if (isSw0() && (timerRunning == RUNNING)) {
-      stopTimer();
-  } else if (isSw0() && (timerRunning == STOPED)) {
+  if (isSw0()) {
+    if (timerRunning == RUNNING) {
+      stopEnding();
+      stopTimer();  
+    } else {
       startTimer();
+    }
   }
   return ;
 }
 
 void Sw1Observer() {
   if (isSw1() && (timerRunning == STOPED)) {
-    mode = ~mode;
+    mode ^= 1;
+    Led1Write();
+    Serial.println(mode, DEC);
   }
   return ;
 }
